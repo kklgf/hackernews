@@ -55,6 +55,7 @@ MIDDLEWARE = [
 
     # all the middlewares
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'graphql_jwt.middleware.JSONWebTokenMiddleware',  # <<--- Add this line
 ]
 
 ROOT_URLCONF = 'hackernews.urls'
@@ -107,6 +108,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'graphql_jwt.backends.JSONWebTokenBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
@@ -129,11 +134,10 @@ STATIC_URL = '/static/'
 
 GRAPHENE = {
     'SCHEMA': 'hackernews.schema.schema',
-    # 'MIDDLEWARE': ['graphql_jwt.middleware.JSONWebTokenMiddleware', ],
+    # 'MIDDLEWARE': [
+    #     'graphql_jwt.middleware.JSONWebTokenMiddleware',
+    # ],
 }
-'''python(path=“…/graphql-python/hackernews/hackernews/settings.py”) GRAPHENE = { ‘SCHEMA’: ‘mysite.myschema.schema’, ‘MIDDLEWARE’: [ ‘graphql_jwt.middleware.JSONWebTokenMiddleware’, ], } '''
 
-AUTHENTICATION_BACKENDS = [
-    'graphql_jwt.backends.JSONWebTokenBackend',
-    'django.contrib.auth.backends.ModelBackend',
-]
+# '''python(path=“./settings.py”) GRAPHENE = { ‘SCHEMA’: ‘hackernews.myschema.schema’, ‘MIDDLEWARE’: [ ‘graphql_jwt.middleware.JSONWebTokenMiddleware’, ], } '''
+
