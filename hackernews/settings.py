@@ -52,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
     # all the middlewares
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 ]
@@ -128,8 +129,9 @@ STATIC_URL = '/static/'
 
 GRAPHENE = {
     'SCHEMA': 'hackernews.schema.schema',
-    'MIDDLEWARE': ['graphql_jwt.middleware.JSONWebTokenMiddleware', ],
+    # 'MIDDLEWARE': ['graphql_jwt.middleware.JSONWebTokenMiddleware', ],
 }
+'''python(path=“…/graphql-python/hackernews/hackernews/settings.py”) GRAPHENE = { ‘SCHEMA’: ‘mysite.myschema.schema’, ‘MIDDLEWARE’: [ ‘graphql_jwt.middleware.JSONWebTokenMiddleware’, ], } '''
 
 AUTHENTICATION_BACKENDS = [
     'graphql_jwt.backends.JSONWebTokenBackend',
